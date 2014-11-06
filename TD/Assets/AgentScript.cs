@@ -13,7 +13,7 @@ public class AgentScript : MonoBehaviour
 
 	void Update () 
 	{
-		agent.SetDestination(target);
+		agent.SetDestination(target.position);
 	}
 
 }
