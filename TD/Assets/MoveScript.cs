@@ -3,13 +3,17 @@ using System.Collections;
 
 public class MoveScript : MonoBehaviour {
 
+	Transform transform;
+
 	// Use this for initialization
-	void Start () {
-	
+	void Start () 
+	{
+		transform = GetComponent<Transform>();
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void Update () 
+	{
+		transform.Translate (new Vector3(0.1,0.1));
 	}
 }
