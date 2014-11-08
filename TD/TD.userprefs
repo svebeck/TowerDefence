@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/AgentScript.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/MoveScript.cs">
     <Files>
-      <File FileName="Assets/AgentScript.cs" Line="12" Column="3" />
+      <File FileName="Assets/AgentScript.cs" Line="7" Column="21" />
+      <File FileName="Assets/MoveScript.cs" Line="17" Column="36" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
