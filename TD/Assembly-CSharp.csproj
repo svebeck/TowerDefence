@@ -46,8 +46,13 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\AgentScript.cs" />
-     <Compile Include="Assets\MoveScript.cs" />
+     <Compile Include="Assets\Scripts\AgentScript.cs" />
+     <Compile Include="Assets\Scripts\AimAndShoot.cs" />
+     <Compile Include="Assets\Scripts\BuildScript.cs" />
+     <Compile Include="Assets\Scripts\BulletScript.cs" />
+     <Compile Include="Assets\Scripts\HighlightScript.cs" />
+     <Compile Include="Assets\Scripts\MouseOverScript.cs" />
+     <Compile Include="Assets\Scripts\MoveScript.cs" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Multiply Culled.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Miscellaneous Shaders\Mobile Background.shader" />
