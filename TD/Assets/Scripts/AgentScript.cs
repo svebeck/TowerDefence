@@ -16,4 +16,15 @@ public class AgentScript : MonoBehaviour
 	{
 	}
 
+	
+	void OnCollisionEnter (Collision col)
+	{
+		if(col.gameObject.tag == "Tower")
+		{
+			col.gameObject.GetComponent<HealthScript>().TakeDamage(1);
+			Destroy (gameObject);
+		}
+	}
+
+
 }
