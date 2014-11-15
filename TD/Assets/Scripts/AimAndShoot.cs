@@ -7,9 +7,9 @@ public class AimAndShoot : MonoBehaviour {
 	public string searchTag;
 	public float range;
 	public float speed;
-	public float reloadTime;
+	public int reloadTime;
 
-	float reloadCurrent;
+	int reloadCurrent;
 
 	Transform transform;
 	Transform target;
@@ -35,16 +35,23 @@ public class AimAndShoot : MonoBehaviour {
 		if (target == null)
 			return;
 
-		Vector3 dir = target.transform.position - transform.position;
+		Vector3 dir = transform.position - target.transform.position;
 		Quaternion targetRotation = Quaternion.LookRotation(dir);
 		transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, speed);
 
-		reloadCurrent += Time.deltaTime;
+		reloadCurrent += (int)(Time.fixedDeltaTime*1000);
+		Debug.Log("Modulus: " + (reloadCurrent % reloadTime));
+		Debug.Log("Reload: " + (reloadTime));
+		Debug.Log("Current: " + (reloadCurrent));
+
+
 
 		if (reloadCurrent % reloadTime == 0) 
 		{
-			Instantiate(prefab, new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z), transform.localRotation);
-
+			Debug.Log("Shooting! " + target.transform.position);
+			GameObject obj = (GameObject)Instantiate(prefab, new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z), transform.localRotation);
+			BulletScript bs = obj.GetComponent<BulletScript>();
+			bs.SetTarget(target.transform);
 			reloadCurrent = 0;
 		}
 

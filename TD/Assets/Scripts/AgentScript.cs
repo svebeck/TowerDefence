@@ -9,11 +9,11 @@ public class AgentScript : MonoBehaviour
 	void Start () 
 	{
 		agent = GetComponent<NavMeshAgent>();
+		agent.SetDestination(target.position);
 	}
 
 	void Update () 
 	{
-		agent.SetDestination(target.position);
 	}
 
 }
