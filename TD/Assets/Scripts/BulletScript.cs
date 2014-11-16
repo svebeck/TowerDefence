@@ -19,7 +19,6 @@ public class BulletScript : MonoBehaviour {
 		Debug.Log ("direction: " + direction);
 		Debug.Log ("target: " + target.position);
 		Debug.Log ("transform: " + transform.position);
-		Gizmos.DrawLine (transform.position, target.position);
 	}
 	
 	// Update is called once per frame
