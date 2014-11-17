@@ -21,7 +21,7 @@ public class AgentScript : MonoBehaviour
 	{
 		if(col.gameObject.tag == "Tower")
 		{
-			col.gameObject.GetComponent<HealthScript>().TakeDamage(1);
+			col.gameObject.GetComponent<TowerHealthScript>().TakeDamage(1);
 			Destroy (gameObject);
 		}
 	}

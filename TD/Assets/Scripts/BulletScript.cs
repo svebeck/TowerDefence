@@ -5,6 +5,8 @@ public class BulletScript : MonoBehaviour {
 	
 	public float speed;
 	public int damage;
+	public int areaDamage;
+	public float areaRadius;
 	Transform transform;
 	Vector3 direction;
 	Transform target;
@@ -41,6 +43,17 @@ public class BulletScript : MonoBehaviour {
 	{
 		if(col.gameObject.tag == "Agent")
 		{
+			if (areaRadius > 0)
+			{
+				GameObject[] objs = GameObject.FindGameObjectsWithTag("Agent");
+				foreach (GameObject obj in objs)
+				{
+					float distance = (obj.transform.position - transform.position).sqrMagnitude;
+					if (distance < areaRadius)
+						obj.GetComponent<HealthScript>().TakeDamage(areaDamage);
+				}
+			}
+
 			col.gameObject.GetComponent<HealthScript>().TakeDamage(damage);
 			Destroy (gameObject);
 		}
