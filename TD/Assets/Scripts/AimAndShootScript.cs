@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AimAndShoot : MonoBehaviour {
+public class AimAndShootScript : MonoBehaviour {
 	
 	public GameObject prefab;
 	public string searchTag;
@@ -43,8 +43,6 @@ public class AimAndShoot : MonoBehaviour {
 		Debug.Log("Modulus: " + (reloadCurrent % reloadTime));
 		Debug.Log("Reload: " + (reloadTime));
 		Debug.Log("Current: " + (reloadCurrent));
-
-
 
 		if (reloadCurrent % reloadTime == 0) 
 		{

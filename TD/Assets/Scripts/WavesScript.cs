@@ -15,17 +15,29 @@ public class WavesScript : MonoBehaviour {
 	int waveCount = 0;
 	int enemyCount = 0;
 
+	bool isSpawning = false;
+
+    bool isAllUnitsSpawned = false;
+
 	// Use this for initialization
 	void Start () {
-		Debug.Log ("Start!");
-
+        
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (!isSpawning)
+            return;
 		
-		if (waveCount == waves.Count)
-			return;
+		if (waveCount == waves.Count && !isAllUnitsSpawned)
+        {
+            isAllUnitsSpawned = true;
+            isSpawning = false;
+            Messenger.Broadcast(GameManagerScript.SPAWNER_DEPLETED);
+           
+            return;
+        }
 
 		timer += Time.deltaTime;
 
@@ -55,4 +67,11 @@ public class WavesScript : MonoBehaviour {
 			_interval = interval;
 		}
 	}
+
+    public void StartSpawning()
+    {
+        isSpawning = true;
+    }
+
+
 }

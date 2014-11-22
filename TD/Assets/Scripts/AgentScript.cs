@@ -3,11 +3,13 @@ using System.Collections;
 
 public class AgentScript : MonoBehaviour
 {
-	public GameObject target;
+	GameObject target;
 	NavMeshAgent agent;
 	
 	void Start () 
 	{
+        target = GameObject.Find("Tower");
+
 		agent = GetComponent<NavMeshAgent>();
 		agent.SetDestination(target.transform.position);
 	}
