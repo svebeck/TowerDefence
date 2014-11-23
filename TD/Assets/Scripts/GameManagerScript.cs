@@ -8,20 +8,26 @@ public class GameManagerScript : MonoBehaviour {
 
     public static string SPAWNER_DEPLETED = "spawnerDepleted";
 
-    GameObject[] spawners;
-
     int nrOfDepletedSpawners = 0;
+    bool checkForEnemiesLeft = false;
+
 
 	void Start()
 	{
         Messenger.AddListener(SPAWNER_DEPLETED, SpawnerDepleted);
         Messenger.MarkAsPermanent(SPAWNER_DEPLETED);
-        spawners = GameObject.FindGameObjectsWithTag("Spawner");
 	}
 
 	// Update is called once per frame
 	void Update () {
-
+        if (checkForEnemiesLeft)
+        {
+            if (GameObject.FindGameObjectsWithTag("Agent").Length == 0)
+            {
+                LoadNextLevel();
+                checkForEnemiesLeft = false;
+            }
+        }
 
 		if (!spawnStarted && Application.loadedLevelName == "level"+(level-1)) 
 		{
@@ -36,7 +42,8 @@ public class GameManagerScript : MonoBehaviour {
 	}
 
 	public void SpawnEnemies()
-	{
+    {
+        GameObject[] spawners = GameObject.FindGameObjectsWithTag("Spawner");
         foreach (GameObject obj in spawners)
         {
             WavesScript ws = obj.GetComponent<WavesScript>();
@@ -48,9 +55,11 @@ public class GameManagerScript : MonoBehaviour {
     {
         nrOfDepletedSpawners++;
         
+        GameObject[] spawners = GameObject.FindGameObjectsWithTag("Spawner");
+    
         if (nrOfDepletedSpawners == spawners.Length)
         {
-            LoadNextLevel();
+            checkForEnemiesLeft = true;
         }
     }
 }

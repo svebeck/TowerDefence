@@ -50,6 +50,7 @@
      <Compile Include="Assets\Scripts\AimAndShootScript.cs" />
      <Compile Include="Assets\Scripts\BuildScript.cs" />
      <Compile Include="Assets\Scripts\BulletScript.cs" />
+     <Compile Include="Assets\Scripts\Callback.cs" />
      <Compile Include="Assets\Scripts\DeadScript.cs" />
      <Compile Include="Assets\Scripts\DontDestroyOnLoadScript.cs" />
      <Compile Include="Assets\Scripts\GameManagerScript.cs" />
@@ -59,6 +60,7 @@
      <Compile Include="Assets\Scripts\MouseOverScript.cs" />
      <Compile Include="Assets\Scripts\MoveBuildMenuScript.cs" />
      <Compile Include="Assets\Scripts\MoveScript.cs" />
+     <Compile Include="Assets\Scripts\MultiAgentScript.cs" />
      <Compile Include="Assets\Scripts\TowerHealthScript.cs" />
      <Compile Include="Assets\Scripts\UIManagerScript.cs" />
      <Compile Include="Assets\Scripts\WaveScript.cs" />

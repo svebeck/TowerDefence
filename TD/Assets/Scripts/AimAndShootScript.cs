@@ -40,13 +40,13 @@ public class AimAndShootScript : MonoBehaviour {
 		transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, speed);
 
 		reloadCurrent += (int)(Time.fixedDeltaTime*1000);
-		Debug.Log("Modulus: " + (reloadCurrent % reloadTime));
-		Debug.Log("Reload: " + (reloadTime));
-		Debug.Log("Current: " + (reloadCurrent));
+		//Debug.Log("Modulus: " + (reloadCurrent % reloadTime));
+		//Debug.Log("Reload: " + (reloadTime));
+		//Debug.Log("Current: " + (reloadCurrent));
 
 		if (reloadCurrent % reloadTime == 0) 
 		{
-			Debug.Log("Shooting! " + target.transform.position);
+			//Debug.Log("Shooting! " + target.transform.position);
 			GameObject obj = (GameObject)Instantiate(prefab, new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z), transform.localRotation);
 			BulletScript bs = obj.GetComponent<BulletScript>();
 			bs.SetTarget(target.transform);
@@ -68,6 +68,11 @@ public class AimAndShootScript : MonoBehaviour {
 		
 		// loop through each tagged object, remembering nearest one found
 		foreach (GameObject obj in taggedGameObjects) {
+            HealthScript hs = obj.GetComponent<HealthScript>();
+
+            if (!hs.targetable)
+                continue;
+
 			Vector3 objectPos = obj.transform.position;
 			float distanceSqr = (objectPos - transform.position).sqrMagnitude;
 

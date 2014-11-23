@@ -4,6 +4,7 @@ using System.Collections;
 public class HealthScript : MonoBehaviour {
 
 	public int health;
+    public bool targetable = true;
 	public GameObject deadPrefab;
 	int currentHealth;
 	float dmgFlash = 1;

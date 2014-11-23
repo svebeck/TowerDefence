@@ -7,6 +7,9 @@ public class WavesScript : MonoBehaviour {
 
 	public float interval;
 	public float waveInterval;
+    public float startDelay;
+
+    bool isBeyondDelay = false;
 
 	float _interval;
 
@@ -30,16 +33,23 @@ public class WavesScript : MonoBehaviour {
 		if (!isSpawning)
             return;
 		
-		if (waveCount == waves.Count && !isAllUnitsSpawned)
+		if (waveCount == waves.Count)
         {
+            if (isAllUnitsSpawned)
+                return;
+
             isAllUnitsSpawned = true;
             isSpawning = false;
             Messenger.Broadcast(GameManagerScript.SPAWNER_DEPLETED);
-           
             return;
         }
 
 		timer += Time.deltaTime;
+
+        if (!isBeyondDelay && timer < startDelay)
+            return;
+        else
+            isBeyondDelay = true;
 
 		if (timer > _interval)
 		{
