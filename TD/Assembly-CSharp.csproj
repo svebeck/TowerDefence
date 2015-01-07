@@ -62,6 +62,7 @@
      <Compile Include="Assets\Scripts\MoveScript.cs" />
      <Compile Include="Assets\Scripts\MultiAgentScript.cs" />
      <Compile Include="Assets\Scripts\TowerHealthScript.cs" />
+     <Compile Include="Assets\Scripts\TurretScript.cs" />
      <Compile Include="Assets\Scripts\UIManagerScript.cs" />
      <Compile Include="Assets\Scripts\WaveScript.cs" />
      <Compile Include="Assets\Scripts\WavesScript.cs" />

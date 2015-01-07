@@ -17,7 +17,7 @@ public class TowerHealthScript : MonoBehaviour {
 	void Start () {
 		currentHealth = health;
 		startColor = renderer.material.color;
-		score = GameObject.Find("Score").GetComponent<Text>();
+		score = GameObject.Find("HealthText").GetComponent<Text>();
 		score.text = currentHealth.ToString();
 		gameOverScreen = GameObject.FindGameObjectWithTag ("GameOverScreen");
 

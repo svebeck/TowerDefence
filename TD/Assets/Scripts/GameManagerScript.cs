@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GameManagerScript : MonoBehaviour {
 
 	public int level = 0;
+    public int startCredits = 100;
+    private int credits = 0;
 	bool spawnStarted = false;
 
     public static string SPAWNER_DEPLETED = "spawnerDepleted";
@@ -16,6 +19,8 @@ public class GameManagerScript : MonoBehaviour {
 	{
         Messenger.AddListener(SPAWNER_DEPLETED, SpawnerDepleted);
         Messenger.MarkAsPermanent(SPAWNER_DEPLETED);
+
+        AddCredits(startCredits);
 	}
 
 	// Update is called once per frame
@@ -61,5 +66,28 @@ public class GameManagerScript : MonoBehaviour {
         {
             checkForEnemiesLeft = true;
         }
+    }
+
+    public void AddCredits(int credits) 
+    {
+        this.credits += credits;
+        
+        GameObject.Find("CreditText").GetComponent<Text>().text = this.credits.ToString();
+    }
+
+    public bool TryRemoveCredits(int credits)
+    {
+        Debug.Log("current credits " + this.credits);
+        if (credits > this.credits)
+        {
+            return false;
+        }
+
+        Debug.Log("try remove credits true!");
+        this.credits -= credits;
+        
+        GameObject.Find("CreditText").GetComponent<Text>().text = this.credits.ToString();
+
+        return true;
     }
 }

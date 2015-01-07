@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class HealthScript : MonoBehaviour {
 
 	public int health;
     public bool targetable = true;
+    public int credits = 10;
 	public GameObject deadPrefab;
 	int currentHealth;
 	float dmgFlash = 1;
@@ -19,6 +21,7 @@ public class HealthScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (currentHealth <= 0) {
+            GameObject.Find("GameManager").GetComponent<GameManagerScript>().AddCredits(credits);
 			Destroy (gameObject);
 			Instantiate(deadPrefab, gameObject.transform.position, gameObject.transform.localRotation);
 		}
