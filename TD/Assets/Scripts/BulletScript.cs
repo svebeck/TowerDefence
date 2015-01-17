@@ -1,19 +1,34 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class BulletScript : MonoBehaviour {
 	
     public float speed;
-    public float acceleration = 20;
-	public int damage;
-	public int areaDamage;
-	public float areaRadius;
+    public float acceleration = 20;   
+	public float damage;
+    public float areaDamage; 
+    public float areaRadius;
+    
+    float baseSpeed;
+    float baseAcceleration;   
+    float baseDamage;
+    float baseAreaDamage; 
+    float baseAreaRadius;
+    
+    public List<float> upgradeSpeed;
+    public List<float> upgradeAcceleration;
+    public List<float> upgradeDamage;
+    public List<float> upgradeAreaDamage;
+    public List<float> upgradeAreaRadius;
+
     public float parableHeight;
     public float parableDecay;
+
 	Transform transform;
 	Vector3 direction;
 	Transform target;
     Vector3 oldTarget;
+
 
 	float ttl = 10000;
 
@@ -23,11 +38,20 @@ public class BulletScript : MonoBehaviour {
 	void Start () {
 		transform = GetComponent<Transform> ();
 
-		Debug.Log ("direction: " + direction);
-		Debug.Log ("target: " + target.position);
-		Debug.Log ("transform: " + transform.position);
+		//Debug.Log ("direction: " + direction);
+		//Debug.Log ("target: " + target.position);
+		//Debug.Log ("transform: " + transform.position);
 
+        ResetBase();
 	}
+
+    void ResetBase() {
+        baseSpeed = speed;
+        baseAcceleration = acceleration;
+        baseDamage = damage;
+        baseAreaDamage = areaDamage;
+        baseAreaRadius = areaRadius;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -68,7 +92,7 @@ public class BulletScript : MonoBehaviour {
 
 		direction.Normalize ();
         
-        if (currentSpeed < speed)
+        if (currentSpeed < baseSpeed)
             currentSpeed += Time.fixedDeltaTime * Mathf.Pow(acceleration, 2);
 
 
@@ -85,18 +109,18 @@ public class BulletScript : MonoBehaviour {
 	{
 		if(col.gameObject.tag == "Agent")
 		{
-			if (areaRadius > 0)
+			if (baseAreaRadius > 0)
 			{
 				GameObject[] objs = GameObject.FindGameObjectsWithTag("Agent");
 				foreach (GameObject obj in objs)
 				{
 					float distance = (obj.transform.position - transform.position).sqrMagnitude;
-					if (distance < areaRadius)
-						obj.GetComponent<HealthScript>().TakeDamage(areaDamage);
+					if (distance < baseAreaRadius)
+						obj.GetComponent<HealthScript>().TakeDamage(baseAreaDamage);
 				}
 			}
 
-			col.gameObject.GetComponent<HealthScript>().TakeDamage(damage);
+			col.gameObject.GetComponent<HealthScript>().TakeDamage(baseDamage);
 			Destroy (gameObject);
 		}
 	}
@@ -106,6 +130,22 @@ public class BulletScript : MonoBehaviour {
 		this.target = target;
         oldTarget = target.position;
 	}
+
+    public void Upgrade(int level)
+    {
+        if (level == -1)
+            return;
+        ResetBase();
+
+        for (int i = 0; i < level; i++)
+        {
+            baseSpeed += upgradeSpeed[i];
+            baseAcceleration += upgradeAcceleration[i];
+            baseDamage += upgradeDamage[i];
+            baseAreaDamage += upgradeAreaDamage[i];
+            baseAreaRadius += upgradeAreaRadius[i];
+        }
+    }
 
 
 }

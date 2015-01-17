@@ -4,11 +4,11 @@ using UnityEngine.UI;
 
 public class HealthScript : MonoBehaviour {
 
-	public int health;
+	public float health;
     public bool targetable = true;
     public int credits = 10;
 	public GameObject deadPrefab;
-	int currentHealth;
+	float currentHealth;
 	float dmgFlash = 1;
 	Color startColor;
 
@@ -31,7 +31,7 @@ public class HealthScript : MonoBehaviour {
 		dmgFlash += Time.deltaTime*1.2f;
 	}
 
-	public void TakeDamage(int dmg) {
+	public void TakeDamage(float dmg) {
 		currentHealth -= dmg;
 
 		dmgFlash = 0;

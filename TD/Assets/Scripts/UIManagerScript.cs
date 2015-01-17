@@ -11,10 +11,40 @@ public class UIManagerScript : MonoBehaviour {
 			BuildScript bs = obj.GetComponent<BuildScript>();
 			if (bs.IsSelected())
 			{
-				bs.buildTower(prefab);
+				bs.BuildTower(prefab);
 				break;
 			}
 		}
 
 	}
+
+    public void UpgradeTower()
+    {
+        GameObject[] objs = GameObject.FindGameObjectsWithTag ("TurretPosition");
+        
+        foreach (GameObject obj in objs) {
+            BuildScript bs = obj.GetComponent<BuildScript>();
+            if (bs.IsSelected())
+            {
+                bs.UpgradeTower();
+                break;
+            }
+        }
+    }
+
+    
+    public void SellTower()
+    {
+        GameObject[] objs = GameObject.FindGameObjectsWithTag ("TurretPosition");
+        
+        foreach (GameObject obj in objs) {
+            BuildScript bs = obj.GetComponent<BuildScript>();
+            if (bs.IsSelected())
+            {
+                bs.SellTower();
+                break;
+            }
+        }
+    }
+
 }

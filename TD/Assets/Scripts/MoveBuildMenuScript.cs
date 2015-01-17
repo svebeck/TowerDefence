@@ -17,6 +17,9 @@ public class MoveBuildMenuScript : MonoBehaviour {
 
 	public void Hide()
 	{
+        if (!isVisible)
+            return;
+
 		isVisible = false;
 		gameObject.transform.Translate (new Vector3(0, -100, 0));
 	}

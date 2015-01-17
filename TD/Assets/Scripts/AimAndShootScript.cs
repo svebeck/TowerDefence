@@ -1,15 +1,25 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class AimAndShootScript : MonoBehaviour {
 	
-	public GameObject prefab;
+	public GameObject projectile;
 	public string searchTag;
-	public float range;
-	public float speed;
-	public int reloadTime;
+    public float range;
+    public float rotationSpeed;
+    public float reloadTime;
+    
+    float baseRange;
+    float baseRotationSpeed;
+    float baseReloadTime;
+
+    public List<float> upgradeRange;
+    public List<float> upgradeRotationSpeed;
+    public List<float> upgradeReloadTime;
 
 	int reloadCurrent;
+
+    int upgradeLevel = -1;
 
 	Transform transform;
 	Transform target;
@@ -17,7 +27,20 @@ public class AimAndShootScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		transform = GetComponent<Transform> ();
+
+        ResetBase();
 	}
+
+    void ResetBase() 
+    {
+        baseRotationSpeed = rotationSpeed;
+        baseRange = range;
+        baseReloadTime = reloadTime;
+
+        Debug.Log("baseRotationSpeed: " + baseRotationSpeed);
+        Debug.Log("baseRange: " + baseRange);
+        Debug.Log("baseReloadTime: " + baseReloadTime);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -27,7 +50,7 @@ public class AimAndShootScript : MonoBehaviour {
 			Vector3 objectPos = target.transform.position;
 			float distanceSqr = (objectPos - transform.position).sqrMagnitude;
 			
-			if (distanceSqr >= range) {
+			if (distanceSqr >= baseRange) {
 				target = null;
 			}
 		}
@@ -37,18 +60,19 @@ public class AimAndShootScript : MonoBehaviour {
 
 		Vector3 dir = transform.position - target.transform.position;
 		Quaternion targetRotation = Quaternion.LookRotation(dir);
-		transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, speed);
+		transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, baseRotationSpeed);
 
 		reloadCurrent += (int)(Time.fixedDeltaTime*1000);
 		//Debug.Log("Modulus: " + (reloadCurrent % reloadTime));
 		//Debug.Log("Reload: " + (reloadTime));
 		//Debug.Log("Current: " + (reloadCurrent));
 
-		if (reloadCurrent % reloadTime == 0) 
+		if (reloadCurrent % baseReloadTime == 0) 
 		{
 			//Debug.Log("Shooting! " + target.transform.position);
-			GameObject obj = (GameObject)Instantiate(prefab, new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z), transform.localRotation);
+			GameObject obj = (GameObject)Instantiate(projectile, new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z), transform.localRotation);
 			BulletScript bs = obj.GetComponent<BulletScript>();
+            bs.Upgrade(upgradeLevel);
 			bs.SetTarget(target.transform);
 			reloadCurrent = 0;
 		}
@@ -76,7 +100,7 @@ public class AimAndShootScript : MonoBehaviour {
 			Vector3 objectPos = obj.transform.position;
 			float distanceSqr = (objectPos - transform.position).sqrMagnitude;
 
-			if (distanceSqr < nearestDistanceSqr && distanceSqr < range) {
+			if (distanceSqr < nearestDistanceSqr && distanceSqr < baseRange) {
 				nearestObj = obj.transform;
 				nearestDistanceSqr = distanceSqr;
 			}
@@ -84,4 +108,28 @@ public class AimAndShootScript : MonoBehaviour {
 		
 		return nearestObj;
 	}
+
+    
+    public void Upgrade(int level)
+    {
+        upgradeLevel = level;
+
+        if (level == -1)
+            return;
+
+        ResetBase();
+        
+        Debug.Log("Level: " + level);
+
+        for (int i = 0; i < level; i++)
+        {
+            baseRotationSpeed += upgradeRotationSpeed[i];
+            baseRange += upgradeRange[i];
+            baseReloadTime += upgradeReloadTime[i];
+
+            Debug.Log("upgradeReloadTime[level]: " + upgradeReloadTime[i]);
+        }
+
+        Debug.Log("baseReloadTime: " + baseReloadTime);
+    }
 }

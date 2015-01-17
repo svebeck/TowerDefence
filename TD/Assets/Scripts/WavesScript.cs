@@ -55,11 +55,11 @@ public class WavesScript : MonoBehaviour {
 		{
 			WaveScript ws = waves[waveCount].GetComponent<WaveScript>();
 
-			Debug.Log ("Spawn enemy, " + enemyCount);
+			//Debug.Log ("Spawn enemy, " + enemyCount);
 
 			if (enemyCount == ws.wave.Count)
 			{
-				Debug.Log("New Wave, " + waveCount);
+				//Debug.Log("New Wave, " + waveCount);
 				enemyCount = 0;
 				waveCount += 1;
 				_interval = waveInterval;
