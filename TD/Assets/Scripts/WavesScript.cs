@@ -32,6 +32,12 @@ public class WavesScript : MonoBehaviour {
 
 		if (!isSpawning)
             return;
+
+        if (GameObject.Find("Target") == null)
+        {
+            StopSpawning();
+            return;
+        }
 		
 		if (waveCount == waves.Count)
         {
@@ -81,6 +87,11 @@ public class WavesScript : MonoBehaviour {
     public void StartSpawning()
     {
         isSpawning = true;
+    }
+
+    public void StopSpawning()
+    {
+        isSpawning = false;
     }
 
 

@@ -16,7 +16,7 @@ public class TowerHealthScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		currentHealth = health;
-		startColor = renderer.material.color;
+		startColor = GetComponent<Renderer>().material.color;
 		score = GameObject.Find("HealthText").GetComponent<Text>();
 		score.text = currentHealth.ToString();
 		gameOverScreen = GameObject.FindGameObjectWithTag ("GameOverScreen");
@@ -34,7 +34,7 @@ public class TowerHealthScript : MonoBehaviour {
 		
 		}
 		
-		renderer.material.color = Color.Lerp (Color.yellow, startColor, dmgFlash);
+		GetComponent<Renderer>().material.color = Color.Lerp (Color.yellow, startColor, dmgFlash);
 		
 		dmgFlash += Time.deltaTime*1.2f;
 	}

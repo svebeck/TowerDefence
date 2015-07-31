@@ -16,11 +16,11 @@ public class HighlightScript : MonoBehaviour {
 
 	void OnMouseEnter()
 	{
-		startcolor = renderer.material.color;
-		renderer.material.color = Color.yellow;
+		startcolor = GetComponent<Renderer>().material.color;
+		GetComponent<Renderer>().material.color = Color.yellow;
 	}
 	void OnMouseExit()
 	{
-		renderer.material.color = startcolor;
+		GetComponent<Renderer>().material.color = startcolor;
 	}
 }

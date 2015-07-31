@@ -15,7 +15,7 @@ public class HealthScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		currentHealth = health;
-		startColor = renderer.material.color;
+		startColor = GetComponent<Renderer>().material.color;
 	}
 	
 	// Update is called once per frame
@@ -26,7 +26,7 @@ public class HealthScript : MonoBehaviour {
 			Instantiate(deadPrefab, gameObject.transform.position, gameObject.transform.localRotation);
 		}
 
-		renderer.material.color = Color.Lerp (Color.yellow, startColor, dmgFlash);
+		GetComponent<Renderer>().material.color = Color.Lerp (Color.yellow, startColor, dmgFlash);
 
 		dmgFlash += Time.deltaTime*1.2f;
 	}

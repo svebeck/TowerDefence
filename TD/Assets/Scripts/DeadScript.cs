@@ -28,8 +28,8 @@ public class DeadScript : MonoBehaviour {
 	void Sink()
 	{
 		if (!startedSinking) {
-			gameObject.rigidbody.isKinematic = true;
-			gameObject.rigidbody.useGravity = false;
+			gameObject.GetComponent<Rigidbody>().isKinematic = true;
+			gameObject.GetComponent<Rigidbody>().useGravity = false;
 			startedSinking = true;
 			Debug.Log ("started sinking!");
 		}

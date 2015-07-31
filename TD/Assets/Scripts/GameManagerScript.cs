@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class GameManagerScript : MonoBehaviour {
 
 	public int level = 0;
-    public int startCredits = 100;
+    public int startCredits = 300;
     private int credits = 0;
 	bool spawnStarted = false;
 
@@ -30,6 +30,7 @@ public class GameManagerScript : MonoBehaviour {
             if (GameObject.FindGameObjectsWithTag("Agent").Length == 0)
             {
                 LoadNextLevel();
+                ResetCredits();
                 checkForEnemiesLeft = false;
             }
         }
@@ -68,11 +69,16 @@ public class GameManagerScript : MonoBehaviour {
         }
     }
 
+    private void ResetCredits()
+    {
+        this.credits = startCredits;
+        UpdateCreditText();
+    }
+
     public void AddCredits(int credits) 
     {
         this.credits += credits;
-        
-        GameObject.Find("CreditText").GetComponent<Text>().text = this.credits.ToString();
+        UpdateCreditText();
     }
 
     public bool TryRemoveCredits(int credits)
@@ -85,9 +91,13 @@ public class GameManagerScript : MonoBehaviour {
 
         Debug.Log("try remove credits true!");
         this.credits -= credits;
-        
-        GameObject.Find("CreditText").GetComponent<Text>().text = this.credits.ToString();
 
+        UpdateCreditText();
         return true;
+    }
+
+    private void UpdateCreditText()
+    {
+        GameObject.Find("CreditText").GetComponent<Text>().text = "$" + this.credits.ToString();
     }
 }

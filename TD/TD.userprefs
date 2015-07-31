@@ -1,18 +1,21 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/AimAndShootScript.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/BuildScript.cs">
     <Files>
-      <File FileName="Assets/Scripts/BuildScript.cs" Line="80" Column="22" />
-      <File FileName="Assets/Scripts/TurretScript.cs" Line="5" Column="5" />
-      <File FileName="Assets/Scripts/GameManagerScript.cs" Line="81" Column="22" />
-      <File FileName="Assets/Scripts/AimAndShootScript.cs" Line="10" Column="27" />
-      <File FileName="Assets/Scripts/DeadScript.cs" Line="34" Column="23" />
-      <File FileName="Assets/Scripts/AgentScript.cs" Line="12" Column="9" />
-      <File FileName="Assets/Scripts/BulletScript.cs" Line="112" Column="41" />
-      <File FileName="Assets/Scripts/HealthScript.cs" Line="32" Column="3" />
-      <File FileName="Assets/Scripts/WavesScript.cs" Line="1" Column="19" />
-      <File FileName="Assets/Scripts/UIManagerScript.cs" Line="42" Column="33" />
+      <File FileName="Assets/Scripts/GameManagerScript.cs" Line="32" Column="33" />
+      <File FileName="Assets/Scripts/BuildScript.cs" Line="29" Column="25" />
+      <File FileName="Assets/Scripts/TurretScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AimAndShootScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/DeadScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AgentScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/BulletScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/HealthScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/WavesScript.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/MoveBuildMenuScript.cs" Line="11" Column="11" />
+      <File FileName="Assets/Scripts/WaveScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/MouseOverScript.cs" Line="4" Column="27" />
+      <File FileName="Assets/Scripts/UI/UIBuildTowerButtonScript.cs" Line="12" Column="9" />
+      <File FileName="Assets/Scripts/HighlightScript.cs" Line="22" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

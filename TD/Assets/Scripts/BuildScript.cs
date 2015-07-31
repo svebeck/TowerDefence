@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class BuildScript : MonoBehaviour {
 	bool hasBuilt = false;
-	bool selected = false;
+	public bool selected = false;
     
     Transform transform;
     GameObject turret;
@@ -22,6 +23,13 @@ public class BuildScript : MonoBehaviour {
 	{
         GameObject[] turretPositions = GameObject.FindGameObjectsWithTag("TurretPosition");
 
+        if (selected)
+        {
+            selected = false;
+            HideMenus();
+            return;
+        }
+
         foreach (GameObject tp in turretPositions)
         {
             BuildScript bs = tp.GetComponent<BuildScript>();
@@ -33,6 +41,7 @@ public class BuildScript : MonoBehaviour {
 		if (hasBuilt)
         {
             ShowUpgradeMenu();
+            UpdateUpgradeCost();
         } 
         else
         {
@@ -96,9 +105,9 @@ public class BuildScript : MonoBehaviour {
 
         ts.Upgrade();
 
-        selected = false;
+        //selected = false;
 
-        HideMenus();
+        //HideMenus();
     }
 
     public void SellTower()
@@ -150,6 +159,12 @@ public class BuildScript : MonoBehaviour {
         mbms.Hide();
         
         selected = false;
+    }
+
+    void UpdateUpgradeCost()
+    {
+        TurretScript ts = turret.GetComponent<TurretScript>();
+        GameObject.Find("UpgradeText").GetComponent<Text>().text = "$" + ts.GetUpgradeCost();
     }
 
 	public bool IsSelected()
